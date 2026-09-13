@@ -5,7 +5,7 @@ description: Codex 環境建置（Codex Desktop、Node.js LTS、uv；CLI 選用�
 
 # Codex 環境建置
 
-先判斷作業系統，再確認 Codex Desktop app 是否已安裝、登入。不要一開始就重裝所有工具。
+先判斷作業系統，再確認 Codex Desktop app 是否已安裝、登入。不要一開始就重裝所有工具；Windows PowerShell 的版本檢查請分行執行，避免舊版不支援 `&&`。
 
 本 Skill 不檢查 GitHub 帳號、不執行 `gh auth status`，也不安裝 Git 或 GitHub CLI。GitHub 相關設定全部留給 `codex-github`。
 
@@ -67,5 +67,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 - `uv --version` 有正常版本輸出。
 - 只有選用 CLI 時，才要求 `codex --version` 成功。
 - 全程沒有要求 GitHub 帳號或 GitHub 登入。
+
+## Windows 排錯
+
+- `npm.ps1` 被執行原則阻擋時，改用 `npm.cmd`。
+- 公司網路出現憑證錯誤時，先在當前工作階段使用 `$env:NODE_OPTIONS='--use-system-ca'`；不可永久關閉 SSL 驗證。
+- OneDrive 鎖住封裝輸出時，改到新的版本資料夾或 `%TEMP%` 建置，再複製完成品；保留舊版本。
 
 最終回報：已安裝／已補裝清單、版本、Codex 使用介面與登入狀態，以及仍需使用者手動完成的項目。

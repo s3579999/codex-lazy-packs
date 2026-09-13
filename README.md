@@ -36,8 +36,8 @@
 | 設定檔 | `~/.claude/settings.json`（JSON） | `~/.codex/config.toml`（TOML） |
 | MCP 安裝指令 | `claude mcp add ...` | `codex mcp add ...` |
 | Skill 機制 | 原生支援 | ✅ Codex Desktop 支援 skills；CLI / 舊環境可用 prompt 模板或 shell 腳本備援 |
-| Slash command | 原生支援 | ❌ 沒有 |
-| 排程任務 | `mcp__scheduled-tasks__*` | ❌ 沒有，用系統 cron / Task Scheduler |
+| Slash command | 原生支援 | ✅ 支援；可用指令依目前環境與帳號權限而異（[官方說明](https://learn.chatgpt.com/docs/reference/slash-commands)） |
+| 排程任務 | `mcp__scheduled-tasks__*` | ✅ Desktop 支援排程任務／自動化；可用類型依環境而異（[官方說明](https://learn.chatgpt.com/docs/automations)） |
 
 ---
 
