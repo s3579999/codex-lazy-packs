@@ -1,7 +1,7 @@
 # Codex 懶人包 #02：連接 GitHub
 
-> 版本：v0.3（Codex Desktop 版）
-> 更新日期：2026-04-27
+> 版本：v0.4（Codex Desktop 版）
+> 更新日期：2026-09-13
 
 > 本懶人包可獨立執行：會先檢查 Git、GitHub CLI、登入狀態，再用網頁端登入完成 GitHub CLI 授權，接著引導連接 Codex Desktop 的 GitHub connector。
 
@@ -255,6 +255,49 @@ repositories: []
 > [!important]
 > `gh auth status` 成功，只代表本機 GitHub CLI 登入成功；不代表 Codex Desktop connector 一定已連接。兩個都成功，才是完整 GitHub 工作流。
 
+官方現行的 Codex GitHub 整合也包含 PR Code Review。要啟用自動審查，需要先把 repository 連到 Codex cloud，並具備該 repository 的 push 或 admin 權限；repository 內的 `AGENTS.md` 可提供審查規則。詳見 [OpenAI 官方 GitHub 說明](https://learn.chatgpt.com/docs/third-party/github)。
+
+### 3.5 更新既有 repo 前，先確認本機與遠端關係
+
+不要看到資料夾裡有 `.git` 就直接認定已連上 GitHub。先執行：
+
+```powershell
+git status --short --branch
+git remote -v
+git branch --show-current
+```
+
+判讀方式：
+
+| 畫面 | 代表什麼 | 正確處理 |
+|------|----------|----------|
+| `No commits yet`，且 `git remote -v` 沒有輸出 | 只是本機空 Git，尚未連到任何 GitHub repo | 先查出既有 repo，再 clone；不要直接建立同名 repo |
+| 有 `origin` | 一般是自己可推送的 repo | 確認 URL 與帳號後推送到 `origin` |
+| 同時有 `origin`、`upstream` | 多半是 fork | `origin` 是自己的 fork，`upstream` 是原作者；日常更新推 `origin` |
+
+找不到 repo 名稱時，可先列出已登入帳號的 repo：
+
+```powershell
+gh repo list --limit 100
+```
+
+更新既有 repo 時，優先直接 clone：
+
+```powershell
+gh repo clone 擁有者/repo名稱
+Set-Location .\repo名稱
+git remote -v
+```
+
+如果是 fork，`gh repo clone` 可能自動增加 `upstream`。推送前務必再次確認：
+
+```powershell
+git remote get-url origin
+git remote get-url upstream
+```
+
+若沒有 `upstream`，第二行出錯是正常的。除非你就是原作者或維護者，否則不要把個人修改直接推到 `upstream`。
+
 ---
 
 ## 步驟四：建立測試 repo 驗證
@@ -427,6 +470,10 @@ token、密碼、一次性驗證碼都不要寫進 repo 或 Obsidian 對外筆�
 | push 被拒絕 | 權限不足或不是正確帳號 | 重跑 `gh auth status`，確認帳號與 `repo` scope |
 | GitHub Pages 404 | Pages 尚未部署完成 | 等 1 到 3 分鐘再重整 |
 | Codex 可以讀 repo 但不能 push | connector 可讀不等於本機 git 有權限 | 檢查 `gh auth status` 與 git remote |
+| 本機有 `.git`，但 `git remote -v` 空白 | 本機尚未連到 GitHub | 用 `gh repo list` 找到既有 repo，再用 `gh repo clone`；不要猜 remote URL |
+| clone 後同時出現 `origin` 與 `upstream` | 目前 repo 是 fork | 修改推到自己的 `origin`；`upstream` 只用來追蹤原作者更新 |
+| 在 Windows PowerShell 5.1 使用 `&&` 失敗 | 舊版 PowerShell 不支援此語法 | 改成分行執行，或用分號 `;` |
+| 不小心把大量暫存檔加入 commit | 先用了 `git add .`，未檢查變更 | 先跑 `git status --short`，再用 `git add -- 檔名1 檔名2` 明確加入 |
 
 ---
 
@@ -437,3 +484,4 @@ token、密碼、一次性驗證碼都不要寫進 repo 或 Obsidian 對外筆�
 | 2026-04-26 | v0.1 | Codex 初版 |
 | 2026-04-27 | v0.2 | 改成 Codex Desktop 主線，補上網頁端登入、PowerShell 指令、實測踩坑 |
 | 2026-04-27 | v0.3 | 補上 Codex Desktop GitHub connector 的登入、授權與驗證流程 |
+| 2026-09-13 | v0.4 | 修正既有 repo、fork 遠端、PowerShell 5.1、權限與安全提交的實測踩坑；補上官方 Codex GitHub Code Review 說明 |
