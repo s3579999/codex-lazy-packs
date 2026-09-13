@@ -14,7 +14,7 @@ description: Codex 懶人包全集 — 環境建置、MCP 串接、技能安裝�
 | 00 | `codex-env-setup` | Codex Desktop、Node.js LTS、uv；CLI 選用，不處理 GitHub |
 | 01 | `codex-notebooklm` | 連接 NotebookLM MCP |
 | 02 | `codex-essentials` | 初學者必裝 Skills 與 Plugins |
-| 03 | `codex-github` | 連接 GitHub CLI |
+| 03 | `codex-github` | 連接 GitHub CLI，確認 repository 與 push remote |
 | 04 | `codex-github-obsidian` | GitHub + Obsidian 整合 |
 | 05 | `codex-obsidian` | 連接 Obsidian（資料夾授權 / MCPVault） |
 | 06 | `codex-second-brain` | 第二大腦三層結構 |
@@ -22,7 +22,7 @@ description: Codex 懶人包全集 — 環境建置、MCP 串接、技能安裝�
 | 08 | `codex-firebase` | 連接 Firebase |
 | 09 | `codex-ollama` | 本地 AI Ollama |
 | 10 | `codex-gemini` | Gemini 免費 API |
-| 11 | `codex-workspace` | 專案初始化工作模式 |
+| 11 | `codex-workspace` | 新專案初始化與既有專案安全維護 |
 | 12 | `codex-draw` | 生圖指引（內建 + API） |
 | 13 | `codex-chezmoi` | 跨電腦同步 Codex 設定 |
 | 14 | `codex-install-all` | 一次安裝全部 |

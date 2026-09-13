@@ -1,7 +1,7 @@
 # Codex 懶人包 #02：連接 GitHub
 
-> 版本：v0.3（Codex Desktop 版）
-> 更新日期：2026-04-27
+> 版本：v0.4（Codex Desktop 版）
+> 更新日期：2026-09-13
 
 > 本懶人包可獨立執行：會先檢查 Git、GitHub CLI、登入狀態，再用網頁端登入完成 GitHub CLI 授權，接著引導連接 Codex Desktop 的 GitHub connector。
 
@@ -292,6 +292,7 @@ git init
 git status --short
 git add index.html README.md
 git commit -m "建立 GitHub 連線測試頁"
+git branch -M main
 gh repo create github-test --public --source=. --push
 ```
 
@@ -317,6 +318,39 @@ Hello！GitHub 連接成功！
 
 > [!warning]
 > GitHub Pages 第一次部署可能需要 1 到 3 分鐘。看到 404 時，先等一下再重新整理，不一定是失敗。
+
+---
+
+## 更新既有 repository 前先確認位置
+
+不要看到資料夾裡有程式就直接執行 `git init`。先確認目前位置是否真的是要更新的 repository：
+
+```powershell
+git rev-parse --show-toplevel
+git status --short
+git branch --show-current
+git remote -v
+```
+
+判讀原則：
+
+- 顯示 `not a git repository`：目前資料夾沒有 Git 歷史。先找正確 checkout，不要在桌面、OneDrive 根目錄或共用工作區補做 `git init`。
+- GitHub 已有 repository、本機沒有 checkout：clone 到一個明確且尚不存在的獨立資料夾。
+- 同時看到 `origin` 與 `upstream`：通常是 fork。`origin` 應是自己的 repository，`upstream` 是來源 repository；push 前要看清楚。
+- 提交前使用 `git diff`、`git diff --cached` 檢查，只加入本次相關檔案，避免把其他工作或敏感資料一起送出。
+
+安全更新範例：
+
+```powershell
+gh repo clone <你的帳號>/<repo> "C:\明確路徑\<repo>"
+Set-Location "C:\明確路徑\<repo>"
+git remote -v
+git status --short
+git add <本次相關檔案>
+git diff --cached
+git commit -m "更新說明"
+git push origin HEAD
+```
 
 ---
 
@@ -425,6 +459,9 @@ token、密碼、一次性驗證碼都不要寫進 repo 或 Obsidian 對外筆�
 | connector 看得到帳號但找不到 repo | GitHub App 沒有授權該 repo | 到 GitHub App installation 設定補授權 repo |
 | 瀏覽器沒有自動開 | 裝置登入頁沒被自動喚起 | 手動開 `https://github.com/login/device` |
 | push 被拒絕 | 權限不足或不是正確帳號 | 重跑 `gh auth status`，確認帳號與 `repo` scope |
+| `git status` 顯示 `not a git repository` | 目前不在 Git checkout 內 | 用 `git rev-parse --show-toplevel` 確認；若遠端已存在，clone 到獨立資料夾，不要在共用根目錄直接 `git init` |
+| fork push 到錯誤位置 | 沒有分清楚 `origin` 與 `upstream` | 先跑 `git remote -v`；一般推自己的 `origin`，不要憑 repo 名稱猜測 |
+| GitHub Pages 指向 main，但首次建立的是 master | 沒有在第一次 push 前統一 branch 名稱 | 第一次 commit 後執行 `git branch -M main` 再建立／推送 repository |
 | GitHub Pages 404 | Pages 尚未部署完成 | 等 1 到 3 分鐘再重整 |
 | Codex 可以讀 repo 但不能 push | connector 可讀不等於本機 git 有權限 | 檢查 `gh auth status` 與 git remote |
 
@@ -437,3 +474,4 @@ token、密碼、一次性驗證碼都不要寫進 repo 或 Obsidian 對外筆�
 | 2026-04-26 | v0.1 | Codex 初版 |
 | 2026-04-27 | v0.2 | 改成 Codex Desktop 主線，補上網頁端登入、PowerShell 指令、實測踩坑 |
 | 2026-04-27 | v0.3 | 補上 Codex Desktop GitHub connector 的登入、授權與驗證流程 |
+| 2026-09-13 | v0.4 | 補上既有 repository 定位、避免共用根目錄誤做 git init、fork 的 origin/upstream 判斷及首次 branch 統一 |

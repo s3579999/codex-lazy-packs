@@ -86,7 +86,7 @@ npx skills add mathruffian-dot/codex-lazy-packs --skill codex-env-setup --full-d
 | 00 | [環境建置](00-環境建置.md) | Codex Desktop、Node.js LTS、uv；Codex CLI 選用，不處理 GitHub |
 | 01 | [連接 NotebookLM](01-連接-NotebookLM.md) | NotebookLM MCP（Codex 版） |
 | 01.5 | [初學者必裝外掛程式與技能](01.5-Codex必裝Skills與Plugins.md) | 基礎工具快篩、GitHub、Browser Use、Office 文件、生圖、官方文件與技能工具檢查 |
-| 02 | [連接 GitHub](02-連接-GitHub.md) | GitHub CLI + 網頁端登入 + GitHub Pages 驗證 |
+| 02 | [連接 GitHub](02-連接-GitHub.md) | GitHub CLI、正確 repository／remote 判斷、網頁端登入與 GitHub Pages 驗證 |
 | 02.5 | [連接 GitHub 與 Obsidian 第二大腦](02.5-連接GitHub與Obsidian.md) | 第三集整合版：GitHub CLI commit / push + Obsidian MCPVault |
 | 03 | [連接 Obsidian 第二大腦](03-建立第二大腦-Obsidian.md) | 先找 vault，再設定全域 AGENTS.md；跨專案讀寫可走資料夾授權或 MCPVault |
 | 03+ | [第二大腦設定指南](04-第二大腦設定指南.md) | 三層結構 + AGENTS.md + 模板 |
@@ -94,7 +94,7 @@ npx skills add mathruffian-dot/codex-lazy-packs --skill codex-env-setup --full-d
 | 04.5 | [連接 Firebase 資料庫](04.5-連接-Firebase-資料庫.md) | Firebase MCP（Codex 版） |
 | 05 | [安裝本地 AI Ollama](05-安裝本地AI-Ollama.md) | 本地模型，網頁工具用 |
 | 06 | [設定 Gemini 免費 API](06-設定Gemini免費API.md) | Gemini 免費 API，網頁工具用 |
-| 07 | [開始你的專案](07-初始化班級工具工作模式.md) | AGENTS.md + Obsidian 駕駛艙 + GitHub repo + 開工/收工/新專案初始化 skills |
+| 07 | [開始與維護你的專案](07-初始化班級工具工作模式.md) | 新專案初始化、既有專案安全維護、Windows 版本交付及開工／收工流程 |
 | 08 | [用 Image Gen Skill 在 Codex 生圖](08-用Image Gen Skill在Codex生圖.md) | 新手用內建 Image Gen Skill；進階再用 API Key / CLI |
 | 09 | [用 chezmoi 同步 Codex 設定](09-用chezmoi同步Codex設定.md) | 跨電腦同步 `~/.codex/AGENTS.md` 與全域 skills |
 

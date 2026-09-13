@@ -12,7 +12,7 @@ description: 一次安裝所有 Codex 懶人包技能。說「全部安裝」「
 1. codex-env-setup — 環境建置
 2. codex-notebooklm — NotebookLM
 3. codex-essentials — 必裝 Skills
-4. codex-github — GitHub
+4. codex-github — GitHub 與正確 remote 判斷
 5. codex-github-obsidian — GitHub+Obsidian
 6. codex-obsidian — Obsidian
 7. codex-second-brain — 第二大腦
@@ -20,7 +20,7 @@ description: 一次安裝所有 Codex 懶人包技能。說「全部安裝」「
 9. codex-firebase — Firebase
 10. codex-ollama — Ollama
 11. codex-gemini — Gemini
-12. codex-workspace — 專案初始化
+12. codex-workspace — 專案初始化與既有專案安全維護
 13. codex-draw — 生圖
 14. codex-chezmoi — 同步設定
 
