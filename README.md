@@ -94,7 +94,7 @@ npx skills add mathruffian-dot/codex-lazy-packs --skill codex-env-setup --full-d
 | 04.5 | [連接 Firebase 資料庫](04.5-連接-Firebase-資料庫.md) | Firebase MCP（Codex 版） |
 | 05 | [安裝本地 AI Ollama](05-安裝本地AI-Ollama.md) | 本地模型，網頁工具用 |
 | 06 | [設定 Gemini 免費 API](06-設定Gemini免費API.md) | Gemini 免費 API，網頁工具用 |
-| 07 | [開始與維護你的專案](07-初始化班級工具工作模式.md) | 新專案初始化、既有專案安全維護、Windows 版本交付及開工／收工流程 |
+| 07 | [開始與維護你的專案](07-初始化班級工具工作模式.md) | 新專案初始化、既有專案安全維護、Electron 免安裝版／Windows 版本交付、UI 回歸及開工／收工流程 |
 | 08 | [用 Image Gen Skill 在 Codex 生圖](08-用Image Gen Skill在Codex生圖.md) | 新手用內建 Image Gen Skill；進階再用 API Key / CLI |
 | 09 | [用 chezmoi 同步 Codex 設定](09-用chezmoi同步Codex設定.md) | 跨電腦同步 `~/.codex/AGENTS.md` 與全域 skills |
 

@@ -22,7 +22,7 @@ description: Codex 懶人包全集 — 環境建置、MCP 串接、技能安裝�
 | 08 | `codex-firebase` | 連接 Firebase |
 | 09 | `codex-ollama` | 本地 AI Ollama |
 | 10 | `codex-gemini` | Gemini 免費 API |
-| 11 | `codex-workspace` | 新專案初始化與既有專案安全維護 |
+| 11 | `codex-workspace` | 新專案初始化、既有專案安全維護、Windows 免安裝版交付與 UI 回歸 |
 | 12 | `codex-draw` | 生圖指引（內建 + API） |
 | 13 | `codex-chezmoi` | 跨電腦同步 Codex 設定 |
 | 14 | `codex-install-all` | 一次安裝全部 |

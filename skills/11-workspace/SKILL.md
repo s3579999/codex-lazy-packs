@@ -1,6 +1,6 @@
 ---
 name: codex-workspace
-description: Codex 新專案初始化與既有專案安全維護工作模式。說「初始化專案」「老師建專案」「維護既有專案」「開工」「收工」「Windows 建置」時載入。
+description: Codex 新專案初始化與既有專案安全維護工作模式。說「初始化專案」「老師建專案」「維護既有專案」「開工」「收工」「Windows 建置」「免安裝版」時載入。
 ---
 
 # 專案初始化與安全維護（Codex 版）
@@ -31,6 +31,21 @@ description: Codex 新專案初始化與既有專案安全維護工作模式。�
 3. 先跑定向測試再封裝；封裝後確認 FileVersion／ProductVersion。
 4. 雲端同步資料夾內的 EXE 應複製到本機暫存位置做啟動冒煙測試，避免同步鎖定干擾判斷。
 5. 文件要渲染後逐頁檢查；若最後重建任一成果，需在最後一次建置後重新產生並複核 SHA-256 清單。
+
+### Electron 封裝判斷
+
+- portable EXE 是單檔免安裝版，但第一次啟動可能先自解壓到暫存目錄；NSIS `Setup` EXE 才是安裝版。檔名與說明文件必須清楚區分。
+- 複製 portable EXE 不會自動搬移 `localStorage`、JSON、附件或備份；跨電腦前先確認程式的資料路徑與匯出／還原方式。
+- electron-builder 的 signing 訊息不代表已有可信簽章；用 `Get-AuthenticodeSignature` 驗證最終 EXE。未簽章檔可能被 SmartScreen、端點防護或公司政策記錄／攔截，不得保證隱匿。
+- OneDrive 鎖定建置成果時，先停止已核對路徑的測試程序，改到 `%TEMP%` 封裝，再複製到新的版本資料夾。
+- 公司 TLS 攔截下，Node.js 優先在目前 PowerShell 工作階段使用 `$env:NODE_OPTIONS='--use-system-ca'`；不可把 `strict-ssl=false` 寫進永久或全域設定。
+
+### 既有 UI 修改驗證
+
+- 既有按鈕失效先查事件與 computed style；注意後置 CSS 規則可能覆蓋響應式 `hidden`，不要新增第二個重複按鈕掩蓋根因。
+- 顯示／排序偏好使用獨立設定鍵，僅改畫面，不可改寫原始業務資料。
+- 拖曳功能要實際驗證視覺回饋、插入位置、套用、取消、重設與重啟保存；桌面與手機寬度都要操作並檢查 console。
+- 除單元測試外，至少跑 build、lint、Electron 主程序語法檢查及真實 UI 回歸。
 
 ## 開工/收工
 
